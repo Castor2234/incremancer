@@ -2186,7 +2186,7 @@ var Incremancer;
           new UpgradeDef(87, "Prodigy Slings", this.types.prodigyNets, this.costs.brains, 1e4, 2, 1, 10, "Each rank upgrades one more zombie sling to spawn prodigies. Capped by Zombie Slings rank.", "Slingshot zombies are now prodigies!", 86),
           new UpgradeDef(100, "Golem Slings", this.types.golemNets, this.costs.parts, 5e8, 10, 1, 10, "Each rank assigns one more slingshot to spawn a golem on impact. Capped by Slingshot Launchers rank.", "Slingshots now spawn golems on impact!", 84),
           new UpgradeDef(88, "Skeleton Slings", this.types.skeletonNets, this.costs.bones, 5e6, 100, 1, 10, "Each rank assigns one more slingshot to spawn a skeleton and generate 1B bones. Capped by Slingshot Launchers rank.", "Slingshots now spawn skeletons!", 84),
-          new UpgradeDef(101, "Rapid Deployment", this.types.netCooldown, this.costs.parts, 1e8, 10, 1, 2, "Reduce slingshot cooldown. Rank 1: 5 seconds. Rank 2: 3 seconds.", null, 84),
+          new UpgradeDef(116, "Rapid Deployment", this.types.netCooldown, this.costs.parts, 1e8, 10, 1, 2, "Reduce slingshot cooldown. Rank 1: 5 seconds. Rank 2: 3 seconds.", null, 84),
           new UpgradeDef(89, "Magical Training", this.types.magicalTraining, this.costs.blood, 1e8, 1, 1, 1, "Unlock the spell buff system. Select spells to permanently enhance with powerful modifications.", "Magical Training complete! Spell buffs are now available.", 305),
           new UpgradeDef(90, "Slowing Nets Buff", this.types.spellBuff, this.costs.blood, 1e7, 1, 1, 1, "Unlock: Idle spiders shoot freezing nets at enemies. Priority: tanks > VIPs > random.", null, 89),
           new UpgradeDef(91, "Pandemic Buff", this.types.spellBuff, this.costs.brains, 1e8, 1, 1, 1, "Unlock: Pandemic spell has 1/100 chance to zombify healthy humans.", null, 89),
@@ -2203,7 +2203,7 @@ var Incremancer;
         this.prestigeUpgrades = [new UpgradeDef(108, "A Small Investment", this.types.startingPC, this.costs.prestigePoints, 10, 1.25, 1, 0, "Each rank gives you an additional 500 blood, 50 brains, and 200 bones when starting a new level.", null, null),
           new UpgradeDef(109, "Time Warp", this.types.unlockSpell, this.costs.prestigePoints, 50, 1, 1, 1, "Unlock the Time Warp spell in order to speed up the flow of time.", null, null),
           new UpgradeDef(110, "Master of Death", this.types.energyCost, this.costs.prestigePoints, 1e3, 1, 1, 8, "Each rank reduces the energy cost of summoning a zombie by 1", null, null),
-          new UpgradeDef(106, "Blood Storage", this.types.bloodStoragePC, this.costs.prestigePoints, 10, 1.225, .2, 0, "Additional 20% blood storage for each rank.", null, null),
+          new UpgradeDef(101, "Blood Storage", this.types.bloodStoragePC, this.costs.prestigePoints, 10, 1.225, .2, 0, "Additional 20% blood storage for each rank.", null, null),
           new UpgradeDef(102, "Blood Rate", this.types.bloodGainPC, this.costs.prestigePoints, 10, 1.225, .2, 0, "Additional 20% blood income rate for each rank.", null, null),
           new UpgradeDef(103, "Brain Storage", this.types.brainsStoragePC, this.costs.prestigePoints, 10, 1.225, .2, 0, "Additional 20% brain storage for each rank.", null, null),
           new UpgradeDef(104, "Brain Rate", this.types.brainsGainPC, this.costs.prestigePoints, 10, 1.225, .2, 0, "Additional 20% brain income rate for each rank.", null, null),
@@ -2336,7 +2336,7 @@ var Incremancer;
         case this.types.bloodStoragePC:
           return void(this.gameModel.bloodStorePCMod *= e.costType == this.costs.prestigePoints ? this.calculateWithPrestigeRankBonus(e, t) : Math.pow(1 + e.effect, t));
         case this.types.brainsGainPC:
-          return void(this.gameModel.brainsPCMod *= t > e.costType == this.costs.prestigePoints ? this.calculateWithPrestigeRankBonus(e, t) : Math.pow(1 + e.effect, t));
+          return void(this.gameModel.brainsPCMod *= e.costType == this.costs.prestigePoints ? this.calculateWithPrestigeRankBonus(e, t) : Math.pow(1 + e.effect, t));
         case this.types.brainsStoragePC:
           return void(this.gameModel.brainsStorePCMod *= e.costType == this.costs.prestigePoints ? this.calculateWithPrestigeRankBonus(e, t) : Math.pow(1 + e.effect, t));
         case this.types.zombieDmgPC:
