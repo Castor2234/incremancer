@@ -2203,7 +2203,7 @@ var Incremancer;
         this.prestigeUpgrades = [new UpgradeDef(108, "A Small Investment", this.types.startingPC, this.costs.prestigePoints, 10, 1.25, 1, 0, "Each rank gives you an additional 500 blood, 50 brains, and 200 bones when starting a new level.", null, null),
           new UpgradeDef(109, "Time Warp", this.types.unlockSpell, this.costs.prestigePoints, 50, 1, 1, 1, "Unlock the Time Warp spell in order to speed up the flow of time.", null, null),
           new UpgradeDef(110, "Master of Death", this.types.energyCost, this.costs.prestigePoints, 1e3, 1, 1, 8, "Each rank reduces the energy cost of summoning a zombie by 1", null, null),
-          new UpgradeDef(101, "Blood Storage", this.types.bloodStoragePC, this.costs.prestigePoints, 10, 1.225, .2, 0, "Additional 20% blood storage for each rank.", null, null),
+          new UpgradeDef(106, "Blood Storage", this.types.bloodStoragePC, this.costs.prestigePoints, 10, 1.225, .2, 0, "Additional 20% blood storage for each rank.", null, null),
           new UpgradeDef(102, "Blood Rate", this.types.bloodGainPC, this.costs.prestigePoints, 10, 1.225, .2, 0, "Additional 20% blood income rate for each rank.", null, null),
           new UpgradeDef(103, "Brain Storage", this.types.brainsStoragePC, this.costs.prestigePoints, 10, 1.225, .2, 0, "Additional 20% brain storage for each rank.", null, null),
           new UpgradeDef(104, "Brain Rate", this.types.brainsGainPC, this.costs.prestigePoints, 10, 1.225, .2, 0, "Additional 20% brain income rate for each rank.", null, null),
