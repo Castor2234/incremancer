@@ -2201,7 +2201,7 @@ var Incremancer;
           new UpgradeDef(123, "Spiderlings", this.types.littleSpiders, this.costs.parts, 5e9, 1, 1, 1, "Hatch tiny spiders that patrol near the graveyard. They shoot 3 silk strings in a 10\u00B0 arc, collecting everything in a short radius.", "Spiderlings hatched! Tiny spiders now patrol the graveyard perimeter.", 305),
           
           new UpgradeDef(124, "Cheat +10000 blood", this.types.damage, this.costs.blood, -10000, 1, 0, 100, "", null, null),
-          new UpgradeDef(125, "Cheat +5000 brains", this.types.damage, this.costs.blood, -5000, 1, 0, 100, "", null, null)
+          new UpgradeDef(125, "Cheat +5000 brains", this.types.damage, this.costs.brains, -5000, 1, 0, 100, "", null, null)
         ],
         this.prestigeUpgrades = [new UpgradeDef(108, "A Small Investment", this.types.startingPC, this.costs.prestigePoints, 10, 1.25, 1, 0, "Each rank gives you an additional 500 blood, 50 brains, and 200 bones when starting a new level.", null, null),
           new UpgradeDef(109, "Time Warp", this.types.unlockSpell, this.costs.prestigePoints, 50, 1, 1, 1, "Unlock the Time Warp spell in order to speed up the flow of time.", null, null),
