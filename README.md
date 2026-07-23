@@ -4,7 +4,7 @@ Idle Necromancer Game — a unified fork combining features from CirusDane's and
 
 ## Fork History
 
-**Chalice12** (original) -> **CirusDane** (community features) -> **This fork** (merged with FrAmed46's balance tweaks)
+**Chalice12** (original) -> **CirusDane** (community features) -> **Seb-astian-M** (merged with FrAmed46's balance tweaks) -> **svenfuchs1989-lab** (some bug fixes) -> Castor2234 (this repo) (added 2 cheat buttons to speed up beginning a little)
 
 ## Features
 
