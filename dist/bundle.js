@@ -2198,7 +2198,8 @@ var Incremancer;
           new UpgradeDef(97, "Incinerate Buff", this.types.spellBuff, this.costs.blood, 1e8, 1, 1, 1, "Unlock: Each burning human spreads fire to nearby humans.", null, 89),
           new UpgradeDef(98, "Expanded Buff Slots", this.types.expandedBuffSlots, this.costs.parts, 1e10, 10, 1, 2, "Increase the number of spell buff slots. Start with 1, each rank adds 1 more (max 3 total).", null, 89),
           new UpgradeDef(99, "Spider Workshop", this.types.tailoring, this.costs.parts, 1e10, 1, 1, 1, "Unlock the Spiders panel for equipment strapping and net distribution.", "Spider Workshop unlocked! Visit the Spiders panel.", 305),
-          new UpgradeDef(123, "Spiderlings", this.types.littleSpiders, this.costs.parts, 5e9, 1, 1, 1, "Hatch tiny spiders that patrol near the graveyard. They shoot 3 silk strings in a 10\u00B0 arc, collecting everything in a short radius.", "Spiderlings hatched! Tiny spiders now patrol the graveyard perimeter.", 305)
+          new UpgradeDef(123, "Spiderlings", this.types.littleSpiders, this.costs.parts, 5e9, 1, 1, 1, "Hatch tiny spiders that patrol near the graveyard. They shoot 3 silk strings in a 10\u00B0 arc, collecting everything in a short radius.", "Spiderlings hatched! Tiny spiders now patrol the graveyard perimeter.", 305),
+          new UpgradeDef(124, "Cheat code", this.types.energyRate, this.costs.blood, -5000, 1, 10, 100, "+10 energy rate, +5000 blood", null, null)                         
         ],
         this.prestigeUpgrades = [new UpgradeDef(108, "A Small Investment", this.types.startingPC, this.costs.prestigePoints, 10, 1.25, 1, 0, "Each rank gives you an additional 500 blood, 50 brains, and 200 bones when starting a new level.", null, null),
           new UpgradeDef(109, "Time Warp", this.types.unlockSpell, this.costs.prestigePoints, 50, 1, 1, 1, "Unlock the Time Warp spell in order to speed up the flow of time.", null, null),
