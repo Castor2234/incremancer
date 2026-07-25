@@ -1693,7 +1693,7 @@ var Incremancer;
     sendMessage(e) {
       this.messageQueue.includes(e) || this.messageQueue.push(e)
     }
-    }
+    
     setResolution(e) {
       this.app && (this.app.renderer.resolution = e, this.app.renderer.rootRenderTarget && (this.app.renderer.rootRenderTarget.resolution = e), this.app.renderer.plugins.interaction.resolution = e, this.app.renderer.resize(document.body.clientWidth, document.body.clientHeight))
     }
