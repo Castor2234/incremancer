@@ -350,7 +350,7 @@ var Incremancer;
     }
     castSpell(e) {
       const t = GameModel.getInstance();
-      e.onCooldown || e.active || !e.unlocked || e.energyCost - this.costReduction > t.energy || (t.energy -= e.energyCost - this.costReduction, e.onCooldown = !0, e.cooldownLeft = e.cooldown * this.cooldownReduction, e.active = !0, e.timer = e.duration + this.timeExtension, e.start(), this.applySpellBuffStart(e, t), t.sendMessage(e.name, "chat-spell"))
+      e.onCooldown || e.active || !e.unlocked || e.energyCost - this.costReduction > t.energy || (t.energy -= e.energyCost - this.costReduction, e.onCooldown = !0, e.cooldownLeft = e.cooldown * this.cooldownReduction, e.active = !0, e.timer = e.duration + this.timeExtension, e.start(), this.applySpellBuffStart(e, t), t.sendMessage(e.name))
     }
     hasActiveBuff(buffId) {
       const t = GameModel.getInstance();
@@ -377,7 +377,7 @@ var Incremancer;
     }
     castSpellNoMana(e) {
       const t = this.spellMap.get(e);
-      t && !t.active && (t.active = !0, t.timer = t.duration + this.timeExtension, t.start(), GameModel.getInstance().sendMessage(t.name, "chat-spell"))
+      t && !t.active && (t.active = !0, t.timer = t.duration + this.timeExtension, t.start(), GameModel.getInstance().sendMessage(t.name))
     }
     updateSpells(e) {
       for (let t = 0; t < this.spells.length; t++) {
@@ -1397,7 +1397,7 @@ var Incremancer;
       this.currentState == this.states.levelCompleted && this.startTimer < 0 && !(this.isMilestoneStage(this.level) && !this._milestoneHandled) && this.persistentData.autoStart && !this.bossRushMode && !this.trophyHuntMode && this.startLevel(this.level);
       this.currentState == this.states.levelCompleted && this.startTimer < 0 && !(this.isMilestoneStage(this.level) && !this._milestoneHandled) && this.bossRushMode && this.startLevel(Math.ceil((this.level + 1) / 50) * 50),
       this.currentState == this.states.levelCompleted && this.startTimer < 0 && !(this.isMilestoneStage(this.level) && !this._milestoneHandled) && this.trophyHuntMode && this.startLevel(this.level + 5 - this.level % 5),
-      this.currentState == this.states.levelCompleted && (this.startTimer < 0 && (this.isMilestoneStage(this.level) && !this._milestoneHandled ? (this._milestonePending = true) : this.nextLevel())), this.currentState == this.states.failed && (this.bossRushMode && (this.bossRushMode = !1, this.sendMessage("Boss Rush ended.", "chat-warning")), this.trophyHuntMode && (this.trophyHuntMode = !1, this.sendMessage("Trophy Hunt ended.", "chat-warning")), this.startTimer -= e, this.startTimer < 0 && this.persistentData.autoStart && this.startLevel(this.level - 49)), this.updateStats()
+      this.currentState == this.states.levelCompleted && (this.startTimer < 0 && (this.isMilestoneStage(this.level) && !this._milestoneHandled ? (this._milestonePending = true) : this.nextLevel())), this.currentState == this.states.failed && (this.bossRushMode && (this.bossRushMode = !1, this.sendMessage("Boss Rush ended.")), this.trophyHuntMode && (this.trophyHuntMode = !1, this.sendMessage("Trophy Hunt ended.")), this.startTimer -= e, this.startTimer < 0 && this.persistentData.autoStart && this.startLevel(this.level - 49)), this.updateStats()
     }
     calculateEndLevelBones() {
       this.endLevelBones = 0, this.persistentData.boneCollectors > 0 && this.bones.uncollected && (this.endLevelBones = this.bones.uncollected.map((e => e.value)).reduce(((e, t) => e + t), 0), this.addBones(this.endLevelBones));
@@ -1427,10 +1427,10 @@ var Incremancer;
         this.addBones(endBones);
         if (this.netLaunchers && endParts > 0) {
           this.netLauncherParts += endParts;
-          if (endParts > 0 || endBones > 0) this.sendMessage("Spiders loaded " + n(endParts) + " parts into slingshot" + (endBones > 0 ? ", collected " + n(endBones) + " bones" : ""), "chat-construction");
+          if (endParts > 0 || endBones > 0) this.sendMessage("Spiders loaded " + n(endParts) + " parts into slingshot" + (endBones > 0 ? ", collected " + n(endBones) + " bones" : ""));
         } else {
           this.persistentData.parts += endParts;
-          if (endParts > 0 || endBones > 0) this.sendMessage("Spiders collected remaining: " + (endBones > 0 ? n(endBones) + " bones" : "") + (endBones > 0 && endParts > 0 ? ", " : "") + (endParts > 0 ? n(endParts) + " parts" : ""), "chat-construction");
+          if (endParts > 0 || endBones > 0) this.sendMessage("Spiders collected remaining: " + (endBones > 0 ? n(endBones) + " bones" : "") + (endBones > 0 && endParts > 0 ? ", " : "") + (endParts > 0 ? n(endParts) + " parts" : ""));
         }
       }
     }
@@ -1493,7 +1493,7 @@ var Incremancer;
             this.humans.skeleton.spawnNetSkeleton(costScale, sx, sy);
           }
         }
-        this.sendMessage("Slingshot launched! " + netCount + " shots, " + n(Math.floor(partsUsed)) + " parts expended.", "chat-construction")
+        this.sendMessage("Slingshot launched! " + netCount + " shots, " + n(Math.floor(partsUsed)) + " parts expended.")
       }
     }
     releaseCagedZombies() {
@@ -1690,10 +1690,10 @@ var Incremancer;
     updatePersistentData() {
       this.persistentData.constructions || (this.persistentData.constructions = []), this.persistentData.generators || (this.persistentData.generators = []), this.persistentData.parts || (this.persistentData.parts = 0), this.persistentData.creatureLevels || (this.persistentData.creatureLevels = []), this.persistentData.creatureAutobuild || (this.persistentData.creatureAutobuild = []), this.persistentData.savedCreatures || (this.persistentData.savedCreatures = []), this.persistentData.levelsCompleted || (this.persistentData.levelsCompleted = []), this.persistentData.saveCreated || (this.persistentData.saveCreated = Date.now()), void 0 === this.persistentData.particles && (this.persistentData.particles = !0), this.persistentData.runeshatter || (this.persistentData.runeshatter = 0), this.creatureFactory.updateAutoBuild()
     }
-    sendMessage(e, _t) {
+    sendMessage(e) {
       this.messageQueue.includes(e) || this.messageQueue.push(e)
     }
-    sendMessageKeyed(_key, e, _t) {
+    sendMessageKeyed(e) {
       this.messageQueue.includes(e) || this.messageQueue.push(e)
     }
     setResolution(e) {
@@ -2773,7 +2773,7 @@ var Incremancer;
           };
           i && (t.costType = this.costs.prestigePoints), this.gameModel.persistentData.upgrades.push(t)
         }
-        t && this.gameModel.saveData(), this.applyUpgrades(), e.purchaseMessage && this.gameModel.sendMessage(e.purchaseMessage, "chat-upgrade")
+        t && this.gameModel.saveData(), this.applyUpgrades(), e.purchaseMessage && this.gameModel.sendMessage(e.purchaseMessage)
       }
     }
     removeUpgrade(e) {
@@ -2800,7 +2800,7 @@ var Incremancer;
         rank: 1,
         type: e.type,
         effect: e.effect
-      }), this.gameModel.persistentData.currentConstruction = !1, this.gameModel.saveData(), this.applyUpgrades(), this.angularModel.updateConstructionUpgrades(), this.gameModel.sendMessage("Construction of " + e.name + " complete!", "chat-construction"), e.completeMessage && this.gameModel.sendMessage(e.completeMessage, "chat-construction");
+      }), this.gameModel.persistentData.currentConstruction = !1, this.gameModel.saveData(), this.applyUpgrades(), this.angularModel.updateConstructionUpgrades(), this.gameModel.sendMessage("Construction of " + e.name + " complete!"), e.completeMessage && this.gameModel.sendMessage(e.completeMessage);
       if (this.gameModel.persistentData.rememberMinions && this.gameModel.persistentData.rememberedMinions) {
         const rm = this.gameModel.persistentData.rememberedMinions;
         const pd = this.gameModel.persistentData;
@@ -3045,7 +3045,7 @@ var Incremancer;
       }
     }
     trophyAquired(e) {
-      this.gameModel.persistentData.trophies || (this.gameModel.persistentData.trophies = []), this.gameModel.persistentData.trophies.includes(e) ? this.gameModel.sendMessage("The VIP has been killed!", "chat-vip") : (this.gameModel.persistentData.trophies.push(e), this.gameModel.persistentData.trophies.sort(), this.gameModel.saveData(), this.upgrades.applyUpgrades(), window.kongregate && window.kongregate.stats.submit("trophies", this.gameModel.persistentData.trophies.length), this.gameModel.sendMessage("The VIP has been killed! - New Trophy Aquired", "chat-vip"))
+      this.gameModel.persistentData.trophies || (this.gameModel.persistentData.trophies = []), this.gameModel.persistentData.trophies.includes(e) ? this.gameModel.sendMessage("The VIP has been killed!") : (this.gameModel.persistentData.trophies.push(e), this.gameModel.persistentData.trophies.sort(), this.gameModel.saveData(), this.upgrades.applyUpgrades(), window.kongregate && window.kongregate.stats.submit("trophies", this.gameModel.persistentData.trophies.length), this.gameModel.sendMessage("The VIP has been killed! - New Trophy Aquired"))
     }
     getTrophyList() {
       this.gameModel.persistentData.trophies || (this.gameModel.persistentData.trophies = []), this.gameModel.persistentData.vipEscaped || (this.gameModel.persistentData.vipEscaped = []);
@@ -3109,7 +3109,7 @@ var Incremancer;
         this.vipEscaping = !1
       }), 2e3), this.gameModel.trophyHuntMode && setTimeout((() => {
         this.gameModel.startLevel(this.gameModel.level + 5 - this.gameModel.level % 5)
-      }), 500))), this.army.assaultStarted || Math.random() > .9 && this.gameModel.isBossStage(this.gameModel.level) && (this.army.assaultStarted = !0, this.gameModel.sendMessage("The assault has begun!", "chat-warning"))
+      }), 500))), this.army.assaultStarted || Math.random() > .9 && this.gameModel.isBossStage(this.gameModel.level) && (this.army.assaultStarted = !0, this.gameModel.sendMessage("The assault has begun!"))
     }
     updateBurns(e, t) {
       e.timer.burnTick -= t, e.timer.smoke -= t, e.timer.smoke < 0 && (this.smoke.newFireSmoke(e.x, e.y - 14), e.timer.smoke = this.smokeTimer), e.timer.burnTick < 0 && (this.damageHuman(e, e.burnDamage), e.timer.burnTick = this.burnTickTimer, this.exclamations.newFire(e))
@@ -3228,7 +3228,7 @@ var Incremancer;
           e.play(), e.timer.flee = this.fleeTime, e.maxSpeed = this.maxRunSpeed, this.assignRandomTarget(e), this.exclamations.newExclamation(e);
           break;
         case ce.escaping:
-          e.play(), e.maxSpeed = this.maxRunSpeed, e.target = this.escapeTarget, this.exclamations.newExclamation(e), this.gameModel.sendMessage("The VIP is escaping!", "chat-warning"), this.vipEscaping = !0;
+          e.play(), e.maxSpeed = this.maxRunSpeed, e.target = this.escapeTarget, this.exclamations.newExclamation(e), this.gameModel.sendMessage("The VIP is escaping!"), this.vipEscaping = !0;
           break;
         case ce.attacking:
           e.play(), e.maxSpeed = this.maxRunSpeed
@@ -3269,7 +3269,7 @@ var Incremancer;
           this.fastDistance(e.position.x, e.position.y, e.target.x, e.target.y) < this.moveTargetDistance ? (e.target = void 0, e.zombieTarget = void 0, this.changeState(e, ce.standing)) : this.updateHumanSpeed(e, t);
           break;
         case ce.escaping:
-          this.fastDistance(e.position.x, e.position.y, e.target.x, e.target.y) < this.moveTargetDistance ? (this.smoke.newDroneCloud(e.x, e.y), e.flags.dead = !0, e.zombieTarget = void 0, e.visible = !1, this.vipText.visible = !1, this.gameModel.sendMessage("The VIP has escaped!", "chat-warning"), this.gameModel.vipEscaped(), this.gameModel.trophyHuntMode && (this.gameModel.trophyHuntMode = !1, this.gameModel.sendMessage("Trophy Hunt mode ended.", "chat-warning")), setTimeout((() => {
+          this.fastDistance(e.position.x, e.position.y, e.target.x, e.target.y) < this.moveTargetDistance ? (this.smoke.newDroneCloud(e.x, e.y), e.flags.dead = !0, e.zombieTarget = void 0, e.visible = !1, this.vipText.visible = !1, this.gameModel.sendMessage("The VIP has escaped!"), this.gameModel.vipEscaped(), this.gameModel.trophyHuntMode && (this.gameModel.trophyHuntMode = !1, this.gameModel.sendMessage("Trophy Hunt mode ended.")), setTimeout((() => {
             this.vipEscaping = !1
           }), 2e3)) : this.updateHumanSpeed(e, t);
           break;
@@ -3333,7 +3333,7 @@ var Incremancer;
         let e;
         this.discardedPolice.length > 0 ? (e = this.discardedPolice.pop(), e.alpha = 1, e.textures = this.walkTexture) : e = new PoliceUnit(this.walkTexture), e.reset(), e.flags.dog = !1, e.flags.dead = !1, e.flags.infected = !1, e.flags.burning = !1, e.burnDamage = 0, e.plagueDamage = 0, e.plagueTicks = 0, e.deadTexture = this.deadTexture, e.animationSpeed = .2, e.anchor.set(35 / 80, 1), e.currentPoi = this.map.getRandomBuilding(), e.position.copyFrom(this.map.randomPositionInBuilding(e.currentPoi)), e.zIndex = e.position.y, e.xSpeed = 0, e.ySpeed = 0, e.radioTime = 5, e.speedMod = 1, e.lastKnownBuilding = void 0, e.timer.plagueTick = Math.random() * this.humans.plagueTickTimer, e.maxSpeed = this.maxWalkSpeed, e.visionDistance = this.visionDistance, e.visible = !0, e.maxHealth = e.health = t, e.timer.scan = Math.random() * this.humans.scanTime, e.timer.standing = Math.random() * this.humans.randomSecondsToStand(), e.target = !1, e.zombieTarget = void 0, e.policeState = ue.standing, e.timer.attack = this.attackSpeed, e.scale.set(Math.random() > .5 ? this.scaling : -1 * this.scaling, this.scaling), this.police.push(e), g.addChild(e), this.gameModel.level >= this.policeDogLevel && Math.random() > .5 && this.createPoliceDog(e, s)
       }
-      this.isExtraPolice() && this.gameModel.sendMessage("Warning: High Police Activity!", "chat-warning")
+      this.isExtraPolice() && this.gameModel.sendMessage("Warning: High Police Activity!")
     }
     createPoliceDog(e, t) {
       let s;
@@ -3478,7 +3478,7 @@ var Incremancer;
         let e, s = 0;
         this.gameModel.level > 35 && Math.random() < .3 && (s = 1), (this.gameModel.level > 45 && Math.random() < .3 || this.gameModel.isBossStage(this.gameModel.level) && Math.random() < .5) && (s = 2), this.discardedArmymen.length > 0 ? (e = this.discardedArmymen.pop(), e.alpha = 1, e.textures = this.textures[s].animated) : e = new we(this.textures[s].animated), e.reset(), e.flags.dead = !1, e.flags.infected = !1, e.flags.burning = !1, e.burnDamage = 0, e.plagueDamage = 0, e.minigun = 1 == s, e.rocketlauncher = 2 == s, e.deadTexture = this.textures[s].dead, e.animationSpeed = .2, e.anchor.set(35 / 80, 1), e.currentPoi = this.map.getRandomBuilding(), e.position.copyFrom(this.map.randomPositionInBuilding(e.currentPoi)), e.zIndex = e.position.y, e.xSpeed = 0, e.ySpeed = 0, e.speedMod = 1, e.lastKnownBuilding = null, e.maxSpeed = this.maxWalkSpeed, e.visionDistance = this.visionDistance, e.visible = !0, e.maxHealth = e.health = t, e.timer.attack = this.attackSpeed, e.timer.plagueTick = Math.random() * this.humans.plagueTickTimer, e.timer.scan = Math.random() * this.humans.scanTime, e.timer.standing = Math.random() * this.humans.randomSecondsToStand(), e.target = !1, e.zombieTarget = null, e.graveYardTarget = null, e.armyState = pe.standing, e.attackingGraveyard = !1, e.scale.set(Math.random() > .5 ? this.scaling : -1 * this.scaling, this.scaling), this.armymen.push(e), g.addChild(e)
       }
-      this.isExtraArmy() && this.gameModel.sendMessage("Warning: High Military Activity!", "chat-warning")
+      this.isExtraArmy() && this.gameModel.sendMessage("Warning: High Military Activity!")
     }
     update(e, t) {
       let s = 0;
@@ -3787,7 +3787,7 @@ var Incremancer;
       if (e.graveyard) this.graveyard.damageGraveyard(t);
       else {
         if (e.boneshield) return e.boneshield--, void this.bones.newPart(e.x, e.y, 1);
-        this.graveyard.isWithinFence(e) && (t *= .5, this.exclamations.newShield(e)), e.bloodbornTimer > 0 && (t *= .5, this.exclamations.newShield(e)), s && s.flags.infected && (t *= this.model.plagueDmgReduction), e.health -= t * this.model.runeEffects.damageReduction, this.setSpeedMultiplier(e), this.blood.newSplatter(e.x, e.y), e.health <= 0 && !e.flags.dead && (this.bones.newBones(e.x, e.y), PartsPiles.instance && (e.flags.golem ? PartsPiles.instance.newPartsDrop(e.x, e.y, (e.price || 0) * Math.max(this.refundChance, 0.10)) : PartsPiles.instance.newPartsDrop(e.x, e.y, this.model.zombieHealth * 5)), e.flags.dead = !0, e.flags.golem && this.refundChance > 0 && (this.model.sendMessage("Golem Refunded!", "chat-construction"), this.creatureFactory.refundParts(e, this.refundChance)), Math.random() < this.model.infectedBlastChance && this.causePlagueExplosion(e, .2 * e.maxHealth, !0, !1), e.textures = e.deadTexture, e.gotoAndStop(0), Math.random() < this.model.brainRecoverChance && this.model.addBrains(1)), s && this.model.runeEffects.damageReflection > 0 && this.humans.damageHuman(s, t * this.model.runeEffects.damageReflection)
+        this.graveyard.isWithinFence(e) && (t *= .5, this.exclamations.newShield(e)), e.bloodbornTimer > 0 && (t *= .5, this.exclamations.newShield(e)), s && s.flags.infected && (t *= this.model.plagueDmgReduction), e.health -= t * this.model.runeEffects.damageReduction, this.setSpeedMultiplier(e), this.blood.newSplatter(e.x, e.y), e.health <= 0 && !e.flags.dead && (this.bones.newBones(e.x, e.y), PartsPiles.instance && (e.flags.golem ? PartsPiles.instance.newPartsDrop(e.x, e.y, (e.price || 0) * Math.max(this.refundChance, 0.10)) : PartsPiles.instance.newPartsDrop(e.x, e.y, this.model.zombieHealth * 5)), e.flags.dead = !0, e.flags.golem && this.refundChance > 0 && (this.model.sendMessage("Golem Refunded!"), this.creatureFactory.refundParts(e, this.refundChance)), Math.random() < this.model.infectedBlastChance && this.causePlagueExplosion(e, .2 * e.maxHealth, !0, !1), e.textures = e.deadTexture, e.gotoAndStop(0), Math.random() < this.model.brainRecoverChance && this.model.addBrains(1)), s && this.model.runeEffects.damageReflection > 0 && this.humans.damageHuman(s, t * this.model.runeEffects.damageReflection)
       }
     }
     causePlagueExplosion(e, t, s = !0, i = !1) {
@@ -4118,7 +4118,7 @@ var Incremancer;
     }
     addXp(e) {
       if (this.isAlive() && (this.persistent.xp += e * this.persistent.xpRate, this.persistent.xp > this.xpForNextLevel())) {
-        this.persistent.xp -= this.xpForNextLevel(), this.persistent.level++, this.upgrades.applyUpgrades(), this.model.sendMessage("Skeleton Champion reached level " + this.persistent.level + "!", "chat-levelup");
+        this.persistent.xp -= this.xpForNextLevel(), this.persistent.level++, this.upgrades.applyUpgrades(), this.model.sendMessage("Skeleton Champion reached level " + this.persistent.level + "!");
         const e = document.getElementById("skeleton");
         e && (e.classList.toggle("levelup"), setTimeout((function() {
           e.classList.toggle("levelup")
@@ -4146,7 +4146,7 @@ var Incremancer;
       }
     }
     acceptOffer() {
-      this.model.persistentData.trophies = [], this.persistent.skeletons < 1 ? (this.persistent.skeletons = 1, this.persistent.xpRate = 1, this.model.sendMessage("Skeleton Champion joins the fight!", "chat-levelup")) : this.persistent.xpRate *= 2, this.upgrades.applyUpgrades(), this.model.saveData()
+      this.model.persistentData.trophies = [], this.persistent.skeletons < 1 ? (this.persistent.skeletons = 1, this.persistent.xpRate = 1, this.model.sendMessage("Skeleton Champion joins the fight!")) : this.persistent.xpRate *= 2, this.upgrades.applyUpgrades(), this.model.saveData()
     }
     populate() {
       if (this.model = GameModel.getInstance(), this.map = new LevelMap, this.graveyard = new Graveyard, this.exclamations = new it, this.bullets = new rt, this.spells = new SpellSystem, this.smoke = new ot, this.upgrades = new UpgradeManager, this.humans = new Humans, this.zombies = new Zombies, this.prestigePoints = new Je, this.partFactory = new se, this.bones = new Bones, this.blasts = new nt, this.blood = new _e, this.damageZombie = this.zombies.damageZombie, this.searchClosestTarget = this.zombies.searchClosestTarget, this.updateBurns = this.zombies.updateBurns, this.updateZombieRegen = this.zombies.updateZombieRegen, this.causePlagueExplosion = this.zombies.causePlagueExplosion, this.inflictPlague = this.zombies.inflictPlague, this.healZombie = this.zombies.healZombie, this.setSpeedMultiplier = this.zombies.setSpeedMultiplier, !this.textures.set) {
@@ -4419,9 +4419,7 @@ var Incremancer;
     testForLoot() {
       if (this.persistent.skeletons > 0 && Math.random() < this.lootChance) {
         const e = this.generateLoot(this.persistent.level);
-        const t = "chat-loot-" + (e.r <= 1 ? "common" : e.r == 2 ? "rare" : e.r == 3 ? "epic" : e.r == 4 ? "legendary" : e.r == 5 ? "ancient" : e.r == 6 ? "divine" : "chaos");
-        const lootFilter = this.model.persistentData.lootChatFilter || 0;
-        e.r > lootFilter && this.model.sendMessage(this.getLootName(e) + " collected!", t), this.persistent.items.push(e)
+        this.model.sendMessage(this.getLootName(e) + " collected!"), this.persistent.items.push(e)
       }
     }
     generateLoot(e) {
@@ -4654,7 +4652,7 @@ var Incremancer;
         }
         case be.attackingTarget: {
           const s = this.fastDistance(e.position.x, e.position.y, e.target.x, e.target.y);
-          s < this.attackDistance ? (e.scale.x = e.target.x > e.x ? e.scaling : -e.scaling, e.timer.attack < 0 && (this.humans.damageHuman(e.target, this.calculateDamage(e)), this.model.golemTalents && e.target.flags.dead && this.model.skeleton.killingBlowParts && (this.model.persistentData.parts += this.model.skeleton.killingBlowParts * this.model.partFactory.factoryStats().partsPerSec, this.model.sendMessage("Thrifty: +" + r(this.model.skeleton.killingBlowParts * this.model.partFactory.factoryStats().partsPerSec) + " parts", "chat-thrifty")), e.creatureType == this.creatureTypes.fireGolem && this.humans.burnHuman(e.target, e.attackDamage / 2), e.timer.attack = this.attackSpeed * (1 / (this.model.runeEffects.attackSpeed * this.model.ShockPCMod)), e.flags.burning && (e.timer.attack *= 1 / this.model.burningSpeedMod), this.model.golemTalents && this.model.skeleton.randomSpells.length > 0 && this.model.skeleton.spellTimer < 0 && Math.random() < .07 + this.model.skeleton.increaseChance && (this.model.skeleton._oppSpell = this.model.skeleton.randomSpells[Math.floor(Math.random() * this.model.skeleton.randomSpells.length)], this.model.spells.castSpellNoMana(this.model.skeleton._oppSpell), this.model.sendMessage("Opportunist: " + (this.model.spells.getSpell(this.model.skeleton._oppSpell) || { name: "?" }).name, "chat-spell"), this.model.skeleton.spellTimer = 3)), s > this.attackDistance / 2 && this.updateCreatureSpeed(e, t)) : e.state = be.movingToTarget;
+          s < this.attackDistance ? (e.scale.x = e.target.x > e.x ? e.scaling : -e.scaling, e.timer.attack < 0 && (this.humans.damageHuman(e.target, this.calculateDamage(e)), this.model.golemTalents && e.target.flags.dead && this.model.skeleton.killingBlowParts && (this.model.persistentData.parts += this.model.skeleton.killingBlowParts * this.model.partFactory.factoryStats().partsPerSec, this.model.sendMessage("Thrifty: +" + r(this.model.skeleton.killingBlowParts * this.model.partFactory.factoryStats().partsPerSec) + " parts")), e.creatureType == this.creatureTypes.fireGolem && this.humans.burnHuman(e.target, e.attackDamage / 2), e.timer.attack = this.attackSpeed * (1 / (this.model.runeEffects.attackSpeed * this.model.ShockPCMod)), e.flags.burning && (e.timer.attack *= 1 / this.model.burningSpeedMod), this.model.golemTalents && this.model.skeleton.randomSpells.length > 0 && this.model.skeleton.spellTimer < 0 && Math.random() < .07 + this.model.skeleton.increaseChance && (this.model.skeleton._oppSpell = this.model.skeleton.randomSpells[Math.floor(Math.random() * this.model.skeleton.randomSpells.length)], this.model.spells.castSpellNoMana(this.model.skeleton._oppSpell), this.model.sendMessage("Opportunist: " + (this.model.spells.getSpell(this.model.skeleton._oppSpell) || { name: "?" }).name), this.model.skeleton.spellTimer = 3)), s > this.attackDistance / 2 && this.updateCreatureSpeed(e, t)) : e.state = be.movingToTarget;
           break
         }
       }
@@ -4729,12 +4727,12 @@ var Incremancer;
       this.gameModel.isBossStage(this.gameModel.level) && (this.graveyardHealth -= e, this.graveyardHealth < 0 && (
         this.gameModel.lastFailedBoss === this.gameModel.level ? this.gameModel.bossFailCount++ : (this.gameModel.lastFailedBoss = this.gameModel.level, this.gameModel.bossFailCount = 1),
         this.gameModel.currentState = this.gameModel.states.failed,
-        this.gameModel.trophyHuntMode && (this.gameModel.trophyHuntMode = !1, this.gameModel.sendMessage("Trophy Hunt mode ended.", "chat-warning")),
+        this.gameModel.trophyHuntMode && (this.gameModel.trophyHuntMode = !1, this.gameModel.sendMessage("Trophy Hunt mode ended.")),
         this.gameModel.startTimer = 3
       ))
     }
     drawHealthBar() {
-      this.gameModel.isBossStage(this.gameModel.level) ? (this.gameModel.sendMessage("Defend the Graveyard!", "chat-warning"), this.graveyardHealth = this.graveyardMaxHealth = 100 * this.gameModel.zombieHealth * this.gameModel.graveyardHealthMod, this.healthBar || (this.healthBar = {
+      this.gameModel.isBossStage(this.gameModel.level) ? (this.gameModel.sendMessage("Defend the Graveyard!"), this.graveyardHealth = this.graveyardMaxHealth = 100 * this.gameModel.zombieHealth * this.gameModel.graveyardHealthMod, this.healthBar || (this.healthBar = {
         container: new PIXI.Container,
         background: new PIXI.Graphics,
         foreground: new PIXI.Graphics,
@@ -6787,8 +6785,8 @@ var Incremancer;
         this.level = e
       },
       startLevel() {
-        c.model.trophyHuntMode && (c.model.trophyHuntMode = !1, c.model.sendMessage("Trophy Hunt mode ended.", "chat-warning"));
-        c.model.bossRushMode && (c.model.bossRushMode = !1, c.model.sendMessage("Boss Rush ended.", "chat-warning"));
+        c.model.trophyHuntMode && (c.model.trophyHuntMode = !1, c.model.sendMessage("Trophy Hunt mode ended."));
+        c.model.bossRushMode && (c.model.bossRushMode = !1, c.model.sendMessage("Boss Rush ended."));
         c.model.startLevel(this.level.level), this.shown = !1
       }
     }, c.addToHomeScreen = function() {
@@ -6932,16 +6930,16 @@ var Incremancer;
     }, c.startBossRush = function() {
       c.model.bossRushOffered = !0;
       c.model.bossRushMode = !0;
-      c.model.sendMessage("Boss Rush started! Jumping to boss levels.", "chat-upgrade");
+      c.model.sendMessage("Boss Rush started! Jumping to boss levels.");
       c.model.startLevel(Math.ceil((c.model.level + 1) / 50) * 50);
     }, c.startTrophyHunt = function() {
       if (c.model.trophyHuntMode) {
         c.model.trophyHuntMode = !1;
-        c.model.sendMessage("Trophy Hunt ended.", "chat-warning");
+        c.model.sendMessage("Trophy Hunt ended.");
         return;
       }
       c.model.trophyHuntMode = !0;
-      c.model.sendMessage("Trophy Hunt started! Rushing through trophy levels.", "chat-upgrade");
+      c.model.sendMessage("Trophy Hunt started! Rushing through trophy levels.");
       c.model.startLevel(c.model.level + 5 - c.model.level % 5);
     }, c.nextLevel = function() {
       c.model.nextLevel()
