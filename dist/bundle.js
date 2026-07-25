@@ -1147,7 +1147,7 @@ var Incremancer;
           blood: 0,
           bones: 0,
           brains: 0
-        }, this.gigazombies = !1, this.endLevelTimer = (3), this.endLevelDelay = (3), this.messageQueue = [], this.chatLog = [], this.chatLogId = 0, this.offlineMessage = "", this.runeEffects = {
+        }, this.gigazombies = !1, this.endLevelTimer = (3), this.endLevelDelay = (3), this.messageQueue = [], this.offlineMessage = "", this.runeEffects = {
           attackSpeed: 1,
           critChance: 0,
           critDamage: 0,
@@ -1693,8 +1693,6 @@ var Incremancer;
     sendMessage(e) {
       this.messageQueue.includes(e) || this.messageQueue.push(e)
     }
-    sendMessageKeyed(e) {
-      this.messageQueue.includes(e) || this.messageQueue.push(e)
     }
     setResolution(e) {
       this.app && (this.app.renderer.resolution = e, this.app.renderer.rootRenderTarget && (this.app.renderer.rootRenderTarget.resolution = e), this.app.renderer.plugins.interaction.resolution = e, this.app.renderer.resize(document.body.clientWidth, document.body.clientHeight))
@@ -4652,7 +4650,7 @@ var Incremancer;
         }
         case be.attackingTarget: {
           const s = this.fastDistance(e.position.x, e.position.y, e.target.x, e.target.y);
-          s < this.attackDistance ? (e.scale.x = e.target.x > e.x ? e.scaling : -e.scaling, e.timer.attack < 0 && (this.humans.damageHuman(e.target, this.calculateDamage(e)), this.model.golemTalents && e.target.flags.dead && this.model.skeleton.killingBlowParts && (this.model.persistentData.parts += this.model.skeleton.killingBlowParts * this.model.partFactory.factoryStats().partsPerSec, this.model.sendMessage("Thrifty: +" + r(this.model.skeleton.killingBlowParts * this.model.partFactory.factoryStats().partsPerSec) + " parts")), e.creatureType == this.creatureTypes.fireGolem && this.humans.burnHuman(e.target, e.attackDamage / 2), e.timer.attack = this.attackSpeed * (1 / (this.model.runeEffects.attackSpeed * this.model.ShockPCMod)), e.flags.burning && (e.timer.attack *= 1 / this.model.burningSpeedMod), this.model.golemTalents && this.model.skeleton.randomSpells.length > 0 && this.model.skeleton.spellTimer < 0 && Math.random() < .07 + this.model.skeleton.increaseChance && (this.model.skeleton._oppSpell = this.model.skeleton.randomSpells[Math.floor(Math.random() * this.model.skeleton.randomSpells.length)], this.model.spells.castSpellNoMana(this.model.skeleton._oppSpell), this.model.sendMessage("Opportunist: " + (this.model.spells.getSpell(this.model.skeleton._oppSpell) || { name: "?" }).name), this.model.skeleton.spellTimer = 3)), s > this.attackDistance / 2 && this.updateCreatureSpeed(e, t)) : e.state = be.movingToTarget;
+          s < this.attackDistance ? (e.scale.x = e.target.x > e.x ? e.scaling : -e.scaling, e.timer.attack < 0 && (this.humans.damageHuman(e.target, this.calculateDamage(e)), this.model.golemTalents && e.target.flags.dead && this.model.skeleton.killingBlowParts && (this.model.persistentData.parts += this.model.skeleton.killingBlowParts * this.model.partFactory.factoryStats().partsPerSec), e.creatureType == this.creatureTypes.fireGolem && this.humans.burnHuman(e.target, e.attackDamage / 2), e.timer.attack = this.attackSpeed * (1 / (this.model.runeEffects.attackSpeed * this.model.ShockPCMod)), e.flags.burning && (e.timer.attack *= 1 / this.model.burningSpeedMod), this.model.golemTalents && this.model.skeleton.randomSpells.length > 0 && this.model.skeleton.spellTimer < 0 && Math.random() < .07 + this.model.skeleton.increaseChance && (this.model.spells.castSpellNoMana(this.model.skeleton.randomSpells[Math.floor(Math.random() * this.model.skeleton.randomSpells.length)]), this.model.skeleton.spellTimer = 3)), s > this.attackDistance / 2 && this.updateCreatureSpeed(e, t)) : e.state = be.movingToTarget;
           break
         }
       }
