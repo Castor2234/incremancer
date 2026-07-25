@@ -1525,7 +1525,7 @@ var Incremancer;
       this._milestoneHandled = false, this.level++, this.currentState = this.states.playingLevel, this.setupLevel(), this.updatePlayingLevel(), this.persistentData.autoRelease && this.releaseCagedZombies()
     }
     setupLevel() {
-      this.endLevelTimer = this.endLevelDelay, N(), this.particles.initialize(), this.humans.populate(), this.zombies.populate(), this.graveyard.initialize(), setTimeout(Z, 10), this.upgrades.applyUpgrades(), this.upgrades.updateRuneEffects(), this.partFactory.applyGenerators(), this.creatures.populate(), this.skeleton.populate(), function(){const spells = new SpellSystem; spells.spells.forEach(s => { if (s.active) { s.end(); spells.applySpellBuffEnd(s, this); s.start(); spells.applySpellBuffStart(s, this); } })}.call(this), this.addStartLevelResources(), this.populateStats(), SpiderCollector.instance && (SpiderCollector.instance.spiderTotalBones = 0, SpiderCollector.instance.spiderTotalParts = 0), this.chatLog.forEach(function(m) { m.count = 1 })
+      this.endLevelTimer = this.endLevelDelay, N(), this.particles.initialize(), this.humans.populate(), this.zombies.populate(), this.graveyard.initialize(), setTimeout(Z, 10), this.upgrades.applyUpgrades(), this.upgrades.updateRuneEffects(), this.partFactory.applyGenerators(), this.creatures.populate(), this.skeleton.populate(), function(){const spells = new SpellSystem; spells.spells.forEach(s => { if (s.active) { s.end(); spells.applySpellBuffEnd(s, this); s.start(); spells.applySpellBuffStart(s, this); } })}.call(this), this.addStartLevelResources(), this.populateStats(), SpiderCollector.instance && (SpiderCollector.instance.spiderTotalBones = 0, SpiderCollector.instance.spiderTotalParts = 0)
     }
     populateStats() {
       this.stats = {
