@@ -1690,27 +1690,11 @@ var Incremancer;
     updatePersistentData() {
       this.persistentData.constructions || (this.persistentData.constructions = []), this.persistentData.generators || (this.persistentData.generators = []), this.persistentData.parts || (this.persistentData.parts = 0), this.persistentData.creatureLevels || (this.persistentData.creatureLevels = []), this.persistentData.creatureAutobuild || (this.persistentData.creatureAutobuild = []), this.persistentData.savedCreatures || (this.persistentData.savedCreatures = []), this.persistentData.levelsCompleted || (this.persistentData.levelsCompleted = []), this.persistentData.saveCreated || (this.persistentData.saveCreated = Date.now()), void 0 === this.persistentData.particles && (this.persistentData.particles = !0), this.persistentData.runeshatter || (this.persistentData.runeshatter = 0), this.creatureFactory.updateAutoBuild()
     }
-    sendMessage(e, t) {
-      const idx = this.chatLog.findIndex(m => m.text === e && m.cls === (t || ""));
-      if (idx >= 0) {
-        const entry = this.chatLog.splice(idx, 1)[0];
-        entry.count++, entry.id = this.chatLogId++;
-        this.chatLog.unshift(entry);
-      } else {
-        this.chatLog.unshift({ id: this.chatLogId++, text: e, cls: t || "", count: 1 }),
-          this.chatLog.length > 30 && this.chatLog.pop()
-      }
+    sendMessage(e, _t) {
+      this.messageQueue.includes(e) || this.messageQueue.push(e)
     }
-    sendMessageKeyed(key, e, t) {
-      const idx = this.chatLog.findIndex(m => m.key === key);
-      if (idx >= 0) {
-        const entry = this.chatLog.splice(idx, 1)[0];
-        entry.text = e, entry.id = this.chatLogId++;
-        this.chatLog.unshift(entry);
-      } else {
-        this.chatLog.unshift({ id: this.chatLogId++, text: e, cls: t || "", key: key, count: 1 }),
-          this.chatLog.length > 30 && this.chatLog.pop()
-      }
+    sendMessageKeyed(_key, e, _t) {
+      this.messageQueue.includes(e) || this.messageQueue.push(e)
     }
     setResolution(e) {
       this.app && (this.app.renderer.resolution = e, this.app.renderer.rootRenderTarget && (this.app.renderer.rootRenderTarget.resolution = e), this.app.renderer.plugins.interaction.resolution = e, this.app.renderer.resize(document.body.clientWidth, document.body.clientHeight))
