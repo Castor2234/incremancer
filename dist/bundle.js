@@ -4417,7 +4417,8 @@ var Incremancer;
     testForLoot() {
       if (this.persistent.skeletons > 0 && Math.random() < this.lootChance) {
         const e = this.generateLoot(this.persistent.level);
-        this.model.sendMessage(this.getLootName(e) + " collected!"), this.persistent.items.push(e)
+        const lootFilter = this.model.persistentData.lootChatFilter || 0;
+        e.r > lootFilter && this.model.sendMessage(this.getLootName(e) + " collected!"), this.persistent.items.push(e)
       }
     }
     generateLoot(e) {
